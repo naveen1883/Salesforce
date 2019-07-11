@@ -22,7 +22,7 @@ trigger CreateContact on Account (after Insert,after Update) {
         for(Account acc : Trigger.New) {
             String[] temp = acc.Name.split(' '); //split AccountName into First and Last Names for Contact record
             if(acc.Phone.length() == 10) { //Phone Number validation
-            	Contact savedContact = [SELECT FirstName,LastName,Phone FROM Contact WHERE AccountId in :Trigger.New];
+            	Contact savedContact = [SELECT FirstName,LastName,Phone FROM Contact WHERE AccountId in :acc.Id];
             	savedContact.FirstName = temp[0];
             	savedContact.LastName = temp[1];
             	savedContact.Phone = acc.Phone;
