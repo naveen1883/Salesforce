@@ -1,0 +1,36 @@
+trigger CreateContact on Account (after Insert,after Update) {
+	List<Contact> ContactList = new List<Contact>(); //Bulkify Trigger
+    
+    if(Trigger.isInsert) { //insert use case handler
+    	for(Account acc : Trigger.New) {
+            String[] temp = acc.Name.split(' '); //split AccountName into First and Last Names for Contact record
+            if(acc.Phone.length() == 10) { //Phone Number validation
+    			Contact newContact = new Contact(FirstName = temp[0],LastName = temp[1],
+                                                 AccountId = acc.Id,Phone=acc.Phone);
+        		ContactList.add(newContact);
+            } 
+            else //Error msg displayed on Phone field itself
+                acc.Phone.addError('Phone number must be exactly 10 digits');
+   		}
+    if(ContactList.size()>0) 
+    	Insert ContactList; //Bulkify Trigger
+    }    
+    if(Trigger.isUpdate) { //update use case handler
+        for(Account acc : Trigger.New) {
+            String[] temp = acc.Name.split(' '); //split AccountName into First and Last Names for Contact record
+            if(acc.Phone.length() == 10) { //Phone Number validation
+            	Contact savedContact = [SELECT FirstName,LastName,Phone FROM Contact WHERE AccountId in :Trigger.New];
+            	savedContact.FirstName = temp[0];
+            	savedContact.LastName = temp[1];
+            	savedContact.Phone = acc.Phone;
+        		ContactList.add(savedContact);
+            }
+            else //Error msg displayed on Phone field itself
+                acc.Phone.addError('Phone number must be exactly 10 digits');      
+        }
+    if(ContactList.size()>0) 
+    	Update ContactList; //Bulkify Trigger
+    }
+    System.debug('CreateContact trigger executed successfully');
+    System.debug('Size of Trigger: ' + Trigger.size);
+}
