@@ -1,5 +1,5 @@
 //Assignment 2
-//This is a test class for the CreateContact trigger
+//This is a test class for the CreateContact trigger.
 
 @isTest
 private class CreateContactTest {
