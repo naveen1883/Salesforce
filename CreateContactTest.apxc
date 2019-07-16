@@ -4,57 +4,49 @@
 @isTest
 private class CreateContactTest {
     @isTest static void insertOneAccountCorrectPhoneNumber() {
-    	Account[] accts = CreateContactFactory.insertAccounts(1,'1234567890');
     	Test.startTest();
-    	Database.SaveResult[] result = Database.insert(accts, false);
+        Account[] accts = CreateContactFactory.insertAccounts(1,'1234567890');
         Test.stopTest();
     }
     
     @isTest static void insertOneAccountWrongPhoneNumber() {
-        Account[] accts = CreateContactFactory.insertAccounts(1,'123456789');
     	Test.startTest();
-    	Database.SaveResult[] result = Database.insert(accts, false);
+         Account[] accts = CreateContactFactory.insertAccounts(1,'123456789');
     	Test.stopTest();
     }
     
     @isTest static void insertMultipleAccountsCorrectPhoneNumber() {
-        Account[] accts = CreateContactFactory.insertAccounts(200,'1234567890');
     	Test.startTest();
-    	Database.SaveResult[] result = Database.insert(accts, false);
+        Account[] accts = CreateContactFactory.insertAccounts(200,'1234567890');
     	Test.stopTest();
     }
         
     @isTest static void insertMultipleAccountsWrongPhoneNumber() {
-    	Account[] accts = CreateContactFactory.insertAccounts(200,'123456789');
    		Test.startTest();
-    	Database.SaveResult[] result = Database.insert(accts, false);
+        Account[] accts = CreateContactFactory.insertAccounts(200,'123456789');
     	Test.stopTest();
 	}
     @isTest static void updateOneAccountCorrectPhoneNumber() {
-    	Account[] accts = CreateContactFactory.updateAccounts(1,'1234567890','0987654321');
-    	Test.startTest();
-    	Database.SaveResult[] result = Database.update(accts, false);
+       	Test.startTest();
+        Account[] accts = CreateContactFactory.updateAccounts(1,'1234567890','0987654321');
         Test.stopTest();
     }
     
     @isTest static void updateOneAccountWrongPhoneNumber() {
-        Account[] accts = CreateContactFactory.updateAccounts(1,'123456789','987654321');
     	Test.startTest();
-    	Database.SaveResult[] result = Database.update(accts, false);
+        Account[] accts = CreateContactFactory.updateAccounts(1,'123456789','987654321');
     	Test.stopTest();
     }
     
     @isTest static void updateMultipleAccountsCorrectPhoneNumber() {
-        Account[] accts = CreateContactFactory.updateAccounts(100,'1234567890','0987654321');
     	Test.startTest();
-    	Database.SaveResult[] result = Database.update(accts, false);
+        Account[] accts = CreateContactFactory.updateAccounts(100,'1234567890','0987654321');
     	Test.stopTest();
     }
         
     @isTest static void updateMultipleAccountsWrongPhoneNumber() {
-    	Account[] accts = CreateContactFactory.updateAccounts(100,'123456789','987654321');
    		Test.startTest();
-    	Database.SaveResult[] result = Database.update(accts, false);
+        Account[] accts = CreateContactFactory.updateAccounts(100,'123456789','987654321');
     	Test.stopTest();
 	}
 }
