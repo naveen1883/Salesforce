@@ -5,48 +5,48 @@
 private class CreateContactTest {
     @isTest static void insertOneAccountCorrectPhoneNumber() {
     	Test.startTest();
-        Account[] accts = CreateContactFactory.insertAccounts(1,'1234567890');
+        Account[] accts = CreateAccountFactory.insertAccounts(1,'1234567890');
         Test.stopTest();
     }
     
     @isTest static void insertOneAccountWrongPhoneNumber() {
     	Test.startTest();
-         Account[] accts = CreateContactFactory.insertAccounts(1,'123456789');
+         Account[] accts = CreateAccountFactory.insertAccounts(1,'123456789');
     	Test.stopTest();
     }
     
     @isTest static void insertMultipleAccountsCorrectPhoneNumber() {
     	Test.startTest();
-        Account[] accts = CreateContactFactory.insertAccounts(200,'1234567890');
+        Account[] accts = CreateAccountFactory.insertAccounts(200,'1234567890');
     	Test.stopTest();
     }
         
     @isTest static void insertMultipleAccountsWrongPhoneNumber() {
    		Test.startTest();
-        Account[] accts = CreateContactFactory.insertAccounts(200,'123456789');
+        Account[] accts = CreateAccountFactory.insertAccounts(200,'123456789');
     	Test.stopTest();
 	}
     @isTest static void updateOneAccountCorrectPhoneNumber() {
        	Test.startTest();
-        Account[] accts = CreateContactFactory.updateAccounts(1,'1234567890','0987654321');
+        Account[] accts = CreateAccountFactory.updateAccounts(1,'1234567890','0987654321');
         Test.stopTest();
     }
     
     @isTest static void updateOneAccountWrongPhoneNumber() {
     	Test.startTest();
-        Account[] accts = CreateContactFactory.updateAccounts(1,'123456789','987654321');
+        Account[] accts = CreateAccountFactory.updateAccounts(1,'123456789','987654321');
     	Test.stopTest();
     }
     
     @isTest static void updateMultipleAccountsCorrectPhoneNumber() {
     	Test.startTest();
-        Account[] accts = CreateContactFactory.updateAccounts(100,'1234567890','0987654321');
+        Account[] accts = CreateAccountFactory.updateAccounts(100,'1234567890','0987654321');
     	Test.stopTest();
     }
         
     @isTest static void updateMultipleAccountsWrongPhoneNumber() {
    		Test.startTest();
-        Account[] accts = CreateContactFactory.updateAccounts(100,'123456789','987654321');
+        Account[] accts = CreateAccountFactory.updateAccounts(100,'123456789','987654321');
     	Test.stopTest();
 	}
 }
