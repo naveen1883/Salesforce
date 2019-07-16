@@ -26,27 +26,27 @@ private class CreateContactTest {
         Account[] accts = CreateAccountFactory.insertAccounts(200,'123456789');
     	Test.stopTest();
 	}
-    @isTest static void updateOneAccountCorrectPhoneNumber() {
+    @isTest static void updateOneAccountCorrectCorrectPhoneNumber() {
        	Test.startTest();
         Account[] accts = CreateAccountFactory.updateAccounts(1,'1234567890','0987654321');
         Test.stopTest();
     }
     
-    @isTest static void updateOneAccountWrongPhoneNumber() {
-    	Test.startTest();
-        Account[] accts = CreateAccountFactory.updateAccounts(1,'123456789','987654321');
-    	Test.stopTest();
-    }
-    
-    @isTest static void updateMultipleAccountsCorrectPhoneNumber() {
+    @isTest static void updateMultipleAccountsCorrectCorrectPhoneNumber() {
     	Test.startTest();
         Account[] accts = CreateAccountFactory.updateAccounts(100,'1234567890','0987654321');
     	Test.stopTest();
     }
         
-    @isTest static void updateMultipleAccountsWrongPhoneNumber() {
-   		Test.startTest();
-        Account[] accts = CreateAccountFactory.updateAccounts(100,'123456789','987654321');
+    @isTest static void updateOneAccountCorrectWrongPhoneNumber() {
+       	Test.startTest();
+        Account[] accts = CreateAccountFactory.updateAccounts(1,'1234567890','123456789');
+        Test.stopTest();
+    }
+    
+    @isTest static void updateMultipleAccountsCorrectWrongPhoneNumber() {
+    	Test.startTest();
+        Account[] accts = CreateAccountFactory.updateAccounts(100,'1234567890','123456789');
     	Test.stopTest();
-	}
+    }
 }
