@@ -3,32 +3,41 @@
 
 @isTest
 public class CreateContactFactory {
-    public static List<Account> insertAccounts(Integer numAccts,String phoneNum) {
+    public static List<Account> insertAccounts(Integer numAccts, String phoneNum) {
         List<Account> accts = new List<Account>();
         
         for(Integer i=0;i<numAccts;i++) {
             Account acc = new Account(Name='TestAccount ' + i,Phone=phoneNum);
             accts.add(acc);
         }
+        try {
         insert accts;
+    	}
+        catch (DMLException e) {}
         return accts;
     }
-    public static List<Account> updateAccounts(Integer numAccts,String phoneNum, String newPhone) {
+    
+    public static List<Account> updateAccounts(Integer numAccts, String phoneNum, String newPhone) {
         List<Account> accts = new List<Account>();
         
         for(Integer i=0;i<numAccts;i++) {
             Account acc = new Account(Name='TestAccount ' + i,Phone=phoneNum);
             accts.add(acc);
         }
+        try {
         insert accts;
+    	}
+        catch (DMLException e) {}
         List<Account> accounts = new List<Account>();
         
         for(Account acc : accts) {
-            //Account acct = [SELECT Name,Phone FROM Account WHERE Id = :acc.Id]; //not a good practice
             acc.Phone = newPhone;
             accounts.add(acc);
         }
+        try {
         update accounts;
+    	}
+        catch (DMLException e) {}
         return accounts;
     }
 }
