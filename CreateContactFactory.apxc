@@ -24,9 +24,9 @@ public class CreateContactFactory {
         List<Account> accounts = new List<Account>();
         
         for(Account acc : accts) {
-            Account acct = [SELECT Name,Phone FROM Account WHERE Id = :acc.Id];
-            acct.Phone = newPhone;
-            accounts.add(acct);
+            //Account acct = [SELECT Name,Phone FROM Account WHERE Id = :acc.Id]; //not a good practice
+            acc.Phone = newPhone;
+            accounts.add(acc);
         }
         update accounts;
         return accounts;
