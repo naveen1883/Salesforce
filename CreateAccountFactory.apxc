@@ -2,7 +2,7 @@
 //This is a test utility class for CreateContactTest test class.
 
 @isTest
-public class CreateContactFactory {
+public class CreateAccountFactory {
     public static List<Account> insertAccounts(Integer numAccts, String phoneNum) {
         List<Account> accts = new List<Account>();
         
