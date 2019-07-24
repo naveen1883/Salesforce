@@ -1,37 +1,43 @@
 //Assignment 1
 //If a new Account record is created or existing Account record is modified, then the corresponding Contact record is updated accordingly.
 
-trigger CreateContact on Account (after Insert, after Update) {
+trigger CreateContact on Account (after insert, after update) {
     List<Contact> ContactList = new List<Contact>(); //Bulkify Trigger
     
     if(Trigger.isInsert) { //insert use case handler
         for(Account acc : Trigger.New) {
-            String[] temp = acc.Name.split(' '); //split AccountName into First and Last Names for Contact record
-            if(acc.Phone.length() == 10) { //Phone Number validation
+             //split AccountName into First and Last Names for Contact record
+            if(acc.Phone.length() == 10 && acc.Name.contains(' ')) { //Phone Number validation
+                String[] temp = acc.Name.split(' ');
                 Contact newContact = new Contact(FirstName = temp[0], LastName = temp[1],
                                                  AccountId = acc.Id, Phone = acc.Phone);
                 ContactList.add(newContact);
             } 
-            else  //Error msg displayed on Phone field itself
-                acc.Phone.addError('Phone number must be exactly 10 digits');
+            else if(acc.Phone.length() != 10) //Error msg displayed on Phone field itself
+                acc.Phone.addError('Phone number must contain exactly 10 digits.');
+            else
+                acc.Name.addError('Account name must contain two separate words.');
         }
     if(ContactList.size()>0) 
-        Insert ContactList; //Bulkify Trigger
+        insert ContactList; //Bulkify Trigger
     }    
     if(Trigger.isUpdate) { //update use case handler
         for(Account acc : Trigger.New) {
-            String[] temp = acc.Name.split(' '); //split AccountName into First and Last Names for Contact record
-            if(acc.Phone.length() == 10) { //Phone Number validation
+            //split AccountName into First and Last Names for Contact record
+            if(acc.Phone.length() == 10 && acc.Name.contains(' ')) { //Phone Number validation
+                String[] temp = acc.Name.split(' '); 
                 Contact savedContact = [SELECT FirstName, LastName, Phone FROM Contact WHERE AccountId = :acc.Id];
                 savedContact.FirstName = temp[0];
                 savedContact.LastName = temp[1];
                 savedContact.Phone = acc.Phone;
                 ContactList.add(savedContact);
             }
-            else //Error msg displayed on Phone field itself
-                acc.Phone.addError('Phone number must be exactly 10 digits');      
+            else if(acc.Phone.length() != 10) //Error msg displayed on Phone field itself
+                acc.Phone.addError('Phone number must be exactly 10 digits.');  
+            else
+                acc.Name.addError('Account name must contain two separate words.');
         }
     if(ContactList.size()>0) 
-        Update ContactList; //Bulkify Trigger
+        update ContactList; //Bulkify Trigger
     }
 }
