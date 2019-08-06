@@ -2,7 +2,7 @@
     doInit : function(component,event,helper){
   		//Do nothing on load
  	},
- 	closedModal: function(component,event,helper){
+ 	cancelAction : function(component,event,helper){
         helper.closedModal();         
     },
     saveAccount : function(component,event,helper){
