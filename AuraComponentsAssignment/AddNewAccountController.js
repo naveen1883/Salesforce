@@ -3,10 +3,10 @@
   		//Do nothing on load
  	},
  	closedModal: function(component,event,helper){
-       helper.closedModal();         
+        helper.closedModal();         
     },
     saveAccount : function(component,event,helper){
-       //getting the candidate information
+        //getting the candidate information
         var accountRecord = component.get("v.accObj");
         //Calling the Apex Function
         var action = component.get("c.createAccount");
