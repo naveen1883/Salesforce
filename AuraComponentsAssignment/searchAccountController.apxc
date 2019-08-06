@@ -1,0 +1,15 @@
+public with sharing class searchAccountController {
+ 
+ 	@AuraEnabled
+ 	public static List <Account> fetchAccount(String searchKeyWord) {
+  		String searchKey = searchKeyWord + '%';
+  		List <Account> returnList = new List <Account> ();
+  		List <Account> lstOfAccount = [select id, Name, Phone from Account
+                                   where Name LIKE: searchKey];
+ 
+  		for (Account acc: lstOfAccount) {
+   			returnList.add(acc);
+  		}
+  		return returnList;
+ 	}
+}
