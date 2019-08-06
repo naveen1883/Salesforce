@@ -4,7 +4,7 @@
     
     <aura:attribute name="displayNewAccount" type="Boolean" default="false"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> <!-- calling doInit method in Component Controller -->
-    <aura:handler event="c:NewClosedModalEvent" action="{!c.newClosedModal}"/> <!-- create event for closed modal.-->
+    <aura:handler event="c:NewClosedModalEvent" action="{!c.newClosedModal}"/> <!-- create event for closed modal-->
     <aura:attribute name="accLst" type="Account[]"/> <!-- create Array type Account variable-->
     <article class="slds-card">
       <div class="slds-card__header slds-grid">
