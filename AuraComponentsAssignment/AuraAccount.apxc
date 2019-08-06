@@ -1,0 +1,14 @@
+public with sharing class AuraAccount {
+    //List existing account records
+	@AuraEnabled
+	public static List<Account> getAccountRecord() {
+        return new List<Account>([Select Id,Name,Phone from Account ORDER BY CreatedDate desc]);
+    }
+    
+    //Create new account record
+    @AuraEnabled
+    public static void createAccount(Account acc) {
+        if(acc != null)
+            insert acc;
+    }
+}
