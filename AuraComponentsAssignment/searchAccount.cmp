@@ -43,7 +43,7 @@
         </aura:if>
        
         <!-- TABLE CONTENT--> 
-        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
             <thead>
                 <tr class="slds-text-title_caps">
                     <th scope="col">
@@ -55,6 +55,9 @@
                     <th scope="col">
                         <div class="slds-truncate" title="Phone">Phone</div>
                     </th>
+                    <th scope="col">
+                    	<div class="slds-truncate" title="Action">Action</div>
+                  	</th>
                 </tr>
             </thead>
             <tbody> 
@@ -62,7 +65,7 @@
                 <aura:iteration items="{!v.searchResult}" var="acc" indexVar="count">
                     <tr>
                         <td>
-                            <div class="slds-truncate">{!count + 1}</div>
+                            <div class="slds-truncate">{!count+1}</div>
                         </td>
                         <td>
                             <div class="slds-truncate">{!acc.Name}</div>
@@ -70,6 +73,11 @@
                         <td>
                             <div class="slds-truncate">{!acc.Phone}</div>
                         </td>
+                        <td>
+                          <div class="slds-truncate">
+                              <button type="button" id="{!acc.Id}" onclick="{!c.handleClick}">View</button>
+                          </div>    
+                      	</td>
                     </tr>
                 </aura:iteration>
             </tbody>
