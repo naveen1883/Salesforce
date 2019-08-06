@@ -28,7 +28,7 @@
        
         <!-- TOTAL RECORDS BADGES--> 
         <div class="slds-m-around_x-small">
-            <lightning:badge label="{!v.TotalNumberOfRecord}" />
+            <lightning:badge label="{!v.TotalNumberOfRecord}" />Records found!
         </div>
         
         <!-- ERROR MESSAGE IF NOT RECORDS FOUND--> 
@@ -36,7 +36,7 @@
             <div class="slds-notify_container slds-is-relative">
                 <div class="slds-notify slds-notify_toast slds-theme_error" role="alert">
                     <div class="slds-notify__content">
-                        <h2 class="slds-text-heading_small">No Records Found</h2>
+                        <h2 class="slds-text-heading_small">No Records Found!</h2>
                     </div>
                 </div>
             </div>
