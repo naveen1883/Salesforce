@@ -24,7 +24,7 @@
             </div>
           </div>
           <footer class="slds-modal__footer">
-            <lightning:button label="Cancel" onclick="{!c.closedModal}"/>
+            <lightning:button label="Cancel" onclick="{!c.cancelAction}"/>
             <lightning:button label="Save" onclick="{!c.saveAccount}"/>
           </footer>
         </div>
