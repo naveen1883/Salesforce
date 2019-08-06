@@ -1,7 +1,7 @@
 ({
     SearchHelper : function(component,event) {
         // show spinner message
-         component.find("Id_spinner").set("v.class" , 'slds-show');
+        component.find("Id_spinner").set("v.class" , 'slds-show');
         var action = component.get("c.fetchAccount");
         action.setParams({
             'searchKeyWord': component.get("v.searchKeyword")
