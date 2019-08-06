@@ -1,0 +1,46 @@
+public class MyController {
+
+    private Account acc;
+    private Contact con;
+    private String[] str;
+
+    public MyController() {
+        acc = [SELECT Id, Name, Phone FROM Account 
+                   WHERE Id = :ApexPages.currentPage().getParameters().get('id')];
+    }
+
+    public Account getAccount() {
+        return acc;
+    }
+
+    public PageReference save() {
+        if(acc.Phone.length() == 10 && acc.Name.contains(' ')){
+            update acc;
+            str = acc.Name.split(' ');
+            Contact con = [SELECT FirstName, LastName, Phone FROM Contact 
+                   WHERE AccountId = :acc.Id];
+            con.FirstName = str[0];
+            con.LastName = str[1];
+            con.Phone = acc.Phone;
+            update con;
+            PageReference pref = new ApexPages.StandardController(acc).view();
+            return pref; 
+   		}
+        else if(acc.Phone.length() != 10){
+            ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, 
+                                                          'Phone number must contain exactly 10 digits.');
+            ApexPages.addMessage(msg);
+            return null;
+        }
+        else{
+            ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, 
+                                                          'Account name must contain two separate words.');
+            ApexPages.addMessage(msg);
+            return null;
+        }
+    }
+    
+     public pageReference Cancel(){
+        return new PageReference('/..');
+    }
+}
