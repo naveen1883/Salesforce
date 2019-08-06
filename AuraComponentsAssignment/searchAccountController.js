@@ -12,4 +12,10 @@
             helper.SearchHelper(component, event);
         }
     },
+    handleClick : function(component, event, helper) {
+        var Idx = event.target.id;
+        var baseUrl = "https://resourceful-wolf-b2vzfu-dev-ed.lightning.force.com/lightning/r/Account/";
+        var endUrl = "/view";
+        window.open(baseUrl+Idx+endUrl);
+    }
 })
