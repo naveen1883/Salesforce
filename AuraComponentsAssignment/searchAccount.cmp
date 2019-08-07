@@ -15,23 +15,18 @@
             <lightning:layoutItem size="3" padding="around-small">
                 <lightning:input value="{!v.searchKeyword}"
                                  required="true"
+                                 onkeyup="{!c.Search}"
                                  aura:id="searchField"
-                                 label="Account Name"/>
-            </lightning:layoutItem>
-            <lightning:layoutItem size="2" padding="around-small">
-                <lightning:button onclick="{!c.Search}"
-                                  variant="brand"
-                                  label="Search"
-                                  iconName="utility:search"/> 
+                                 label="Enter Account Name or Phone Number"/>
             </lightning:layoutItem>
         </lightning:layout>
        
-        <!-- TOTAL RECORDS BADGES--> 
+        <!-- TOTAL RECORDS BADGE--> 
         <div class="slds-m-around_x-small">
             <lightning:badge label="{!v.TotalNumberOfRecord}" />Records found!
         </div>
         
-        <!-- ERROR MESSAGE IF NOT RECORDS FOUND--> 
+        <!-- ERROR MESSAGE IF NO RECORDS FOUND--> 
         <aura:if isTrue="{!v.Message}">
             <div class="slds-notify_container slds-is-relative">
                 <div class="slds-notify slds-notify_toast slds-theme_error" role="alert">
@@ -42,7 +37,7 @@
             </div>
         </aura:if>
        
-        <!-- TABLE CONTENT--> 
+        <!-- TABLE CONTENTS--> 
         <table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
             <thead>
                 <tr class="slds-text-title_caps">
