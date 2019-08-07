@@ -14,12 +14,14 @@
           <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
            <div class="slds-form-element">
               <div class="slds-form-element__control">
-                  <lightning:input type="Text" label="Account Name" required="true" name="Accountname" value="{!v.accObj.Name}" />
+                  <lightning:input type="Text" label="Account Name" placeholder="Enter Account Name"
+                                   							required="true" value="{!v.accObj.Name}" />
               </div>
             </div>
             <div class="slds-form-element">
               <div class="slds-form-element__control">
-                  <lightning:input type="tel" label="Phone" name="tel" value="{!v.accObj.Phone}" />
+                  <lightning:input type="tel" label="Phone" placeholder="Format : 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                                            value="{!v.accObj.Phone}" />
               </div>
             </div>
           </div>
