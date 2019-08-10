@@ -4,7 +4,7 @@
         component.find("Id_spinner").set("v.class" , 'slds-show');
         var action = component.get("c.fetchAccount");
         action.setParams({
-            'searchKeyWord': component.get("v.searchKeyword")
+            'searchKeyWord' : component.get("v.searchKeyword")
         });
         action.setCallback(this, function(response) {
            // hide spinner when response coming from server 
@@ -15,11 +15,11 @@
                 
                 // if storeResponse size is 0, display no record found message on screen.
                 if (storeResponse.length == 0) {
-                    component.set("v.Message", true);
+                    component.set("v.errorMessage", true);
                 } 
                 
                 else {
-                    component.set("v.Message", false);
+                    component.set("v.errorMessage", false);
                 }
                 
                 // set numberOfRecord attribute value with length of return value from server
@@ -46,5 +46,17 @@
             }
         });
         $A.enqueueAction(action);
-    }
+    },
+    getAccountRecord : function(component) {
+  		var action = component.get("c.getAccountRecord"); //Calling Apex class controller 'getAccountRecord' method
+        action.setCallback(this, function(response) {
+            var state = response.getState(); //Checking response status
+            var result = JSON.stringify(response.getReturnValue());
+            if (component.isValid() && state === "SUCCESS") {
+                component.set("v.TotalNumberOfRecord", response.getReturnValue().length);
+                component.set("v.searchResult", response.getReturnValue()); // Adding values in Aura attribute variable.   
+            }
+        });
+        $A.enqueueAction(action);
+ 	}
 })
