@@ -26,8 +26,7 @@
                 //Reset Form
                 var newAccount = {'sobjectType': 'Account',
                                     'Name': '',
-                                    'Phone': ''
-                                   };
+                                    'Phone': ''};
                 
                 //resetting the Values in the form
                 component.set("v.accObj",newAccount);
