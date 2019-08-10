@@ -37,6 +37,6 @@
         });
  		//adds the server-side action to the queue        
         $A.enqueueAction(action);
-        helper.closedModal(); //calls helper controller method to close the popup and refresh the account list. 
+        helper.closedModal(); //calls helper controller method to close the popup and refresh the account list
     }
 })
