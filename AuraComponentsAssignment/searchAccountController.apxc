@@ -1,11 +1,11 @@
 public with sharing class searchAccountController {
     //List existing account records
-    @AuraEnabled
-    public static List<Account> getAccountRecord() {
+	@AuraEnabled
+	public static List<Account> getAccountRecord() {
         return ([Select Id,Name,Phone from Account ORDER BY CreatedDate desc]);
     }
     
-    //Create new account record if not blank
+    //Create new account record if not null
     @AuraEnabled
     public static void createAccount(Account acc) {
         if(acc.Name != '' && acc.Phone != '')
@@ -14,10 +14,12 @@ public with sharing class searchAccountController {
     
     //Fetch account records based on user input
     @AuraEnabled
-    public static List<Account> fetchAccount(String searchKeyWord) {
+ 	public static List<Account> fetchAccount(String searchKeyWord) {
   		String searchKey = '%' + searchKeyWord + '%';
-  		List <Account> lstOfAccount = [select id, Name, Phone from Account
+  		List<Account> lstOfAccount = [select id, Name, Phone from Account
                                    where Name LIKE: searchKey OR Phone LIKE: searchKey];
+        //List<List<SObject>> searchResults = [FIND :searchKey RETURNING Account(Id, Name, Phone)];
+		//List<Account> lstOfAccount = searchResults[0];
   		return lstOfAccount;
- 	  }
+ 	}
 }
