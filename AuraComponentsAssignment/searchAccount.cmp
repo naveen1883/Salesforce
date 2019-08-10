@@ -1,10 +1,13 @@
 <aura:component controller="searchAccountController">   
        
     <!-- CREATE ATTRIBUTE/VARIABLE-->
-    <aura:attribute name="searchResult" type="List" description="use for store and display account list return from server"/>
-    <aura:attribute name="searchKeyword" type="String" description="use for store user search input"/>
-    <aura:attribute name="Message" type="boolean" default="false" description="use for display no record found message"/>
-    <aura:attribute name="TotalNumberOfRecord" type="integer" default="0" description="use for display Number of records"/>
+    <aura:attribute name="searchResult" type="Account[]" />
+    <aura:attribute name="searchKeyword" type="String" />
+    <aura:attribute name="errorMessage" type="boolean" default="false" />
+    <aura:attribute name="TotalNumberOfRecord" type="integer" default="0" />
+    <aura:attribute name="displayNewAccount" type="Boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> <!-- calling doInit method in Component Controller -->
+    <aura:handler event="c:NewClosedModalEvent" action="{!c.newClosedModal}" /> <!-- create event for closed modal-->
     
     <!-- SHOW LOADING SPINNER--> 
     <lightning:spinner variant="brand" size="large" aura:id="Id_spinner" class="slds-hide" />
@@ -17,7 +20,8 @@
                                  required="true"
                                  onkeyup="{!c.Search}"
                                  aura:id="searchField"
-                                 label="Enter Account Name or Phone Number"/>
+                                 placeholder="Enter Account Name or Phone Number"
+                                 label="Search Field"/>
             </lightning:layoutItem>
         </lightning:layout>
        
@@ -27,7 +31,7 @@
         </div>
         
         <!-- ERROR MESSAGE IF NO RECORDS FOUND--> 
-        <aura:if isTrue="{!v.Message}">
+        <aura:if isTrue="{!v.errorMessage}">
             <div class="slds-notify_container slds-is-relative">
                 <div class="slds-notify slds-notify_toast slds-theme_error" role="alert">
                     <div class="slds-notify__content">
@@ -36,22 +40,40 @@
                 </div>
             </div>
         </aura:if>
+        
+        <div class="slds-card__header slds-grid">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+          <div class="slds-media__figure">
+            <span class="slds-icon_container slds-icon-standard-account">
+                <lightning:icon iconName="standard:account" size="large" alternativeText="Account List"/>
+            </span>
+          </div>
+          <div class="slds-media__body">
+            <h2>
+                <span class="slds-text-heading_small">Account List</span> 
+            </h2>
+          </div>
+        </header>
+        <div class="slds-no-flex">
+          <lightning:button label="New Account" onclick="{!c.showAccountModal}"/>
+        </div>
+      </div>
        
         <!-- TABLE CONTENTS--> 
         <table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
             <thead>
                 <tr class="slds-text-title_caps">
                     <th scope="col">
-                        <div class="slds-truncate" title="S.no">S.No</div>
+                        <div class="slds-truncate">S.No</div>
                     </th>
                     <th scope="col">
-                        <div class="slds-truncate" title="Account Name">Account Name</div>
+                        <div class="slds-truncate">Account Name</div>
                     </th>
                     <th scope="col">
-                        <div class="slds-truncate" title="Phone">Phone</div>
+                        <div class="slds-truncate">Phone No</div>
                     </th>
                     <th scope="col">
-                    	<div class="slds-truncate" title="Action">Action</div>
+                    	<div class="slds-truncate">Action</div>
                   	</th>
                 </tr>
             </thead>
@@ -70,7 +92,7 @@
                         </td>
                         <td>
                           <div class="slds-truncate">
-                              <button type="button" id="{!acc.Id}" onclick="{!c.handleClick}">View</button>
+                              <lightning:button label="View" value="{!acc.Id}" onclick="{!c.handleClick}"/>
                           </div>    
                       	</td>
                     </tr>
@@ -78,4 +100,8 @@
             </tbody>
         </table>
     </div>
+    <!-- New Account Form -->
+    <aura:if isTrue="{!v.displayNewAccount}">
+        <c:AddNewAccount /> 
+    </aura:if>
 </aura:component>
