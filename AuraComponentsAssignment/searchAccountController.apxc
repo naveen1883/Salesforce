@@ -9,7 +9,7 @@ public with sharing class searchAccountController {
     @AuraEnabled
     public static void createAccount(Account acc) {
         if(acc.Name != '' && acc.Phone != '')
-            upsert acc;
+            insert acc;
     }
     
     //Fetch account records based on user input
