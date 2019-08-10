@@ -1,10 +1,11 @@
-<aura:component implements="force:appHostable" access="global" controller="AuraAccount" >
+<aura:component implements="force:appHostable" access="global" controller="searchAccountController" >
      <!--Start Modal New Account -->
-    <aura:attribute name="accObj" type="Account"  default="{'sobjectType': 'Account',
+    <aura:attribute name="accObj" type="Account" default="{'sobjectType': 'Account',
                          'Name': '',
-                         'Phone': ''                               
-                       }"/>
+                         'Phone': ''}"/>
+    
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
     <div class="demo-only" style="height: 640px;">
       <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
         <div class="slds-modal__container">
@@ -20,8 +21,8 @@
             </div>
             <div class="slds-form-element">
               <div class="slds-form-element__control">
-                  <lightning:input type="tel" label="Phone" placeholder="Format : 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                                                            value="{!v.accObj.Phone}" />
+                  <lightning:input type="tel" label="Phone Number" placeholder="Format: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                                            required="true" value="{!v.accObj.Phone}" />
               </div>
             </div>
           </div>
