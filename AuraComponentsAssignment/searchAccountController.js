@@ -24,8 +24,10 @@
     },
     handleClick : function(component, event, helper) {
         var Idx = event.getSource().get("v.value");
-        var baseUrl = "https://resourceful-wolf-b2vzfu-dev-ed.lightning.force.com/lightning/r/Account/";
-        var endUrl = "/view";
-        window.open(baseUrl+Idx+endUrl);
+        var navEvt = $A.get("e.force:navigateToSObject");
+        navEvt.setParams({
+          "recordId" : Idx
+        });
+        navEvt.fire();
     }
 })
