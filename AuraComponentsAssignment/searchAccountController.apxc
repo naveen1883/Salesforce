@@ -17,7 +17,7 @@ public with sharing class searchAccountController {
  	public static List<Account> fetchAccount(String searchKeyWord) {
   	String searchKey = '%' + searchKeyWord + '%';
   	List<Account> lstOfAccount = [select id, Name, Phone from Account
-                                   where Name LIKE: searchKey OR Phone LIKE: searchKey];
+                                   where Name LIKE :searchKey OR Phone LIKE :searchKey];
         //List<List<SObject>> searchResults = [FIND :searchKey RETURNING Account(Id, Name, Phone)];
 	//List<Account> lstOfAccount = searchResults[0];
   	return lstOfAccount;
