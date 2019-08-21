@@ -17,6 +17,7 @@
         <lightning:layout>
             <lightning:layoutItem size="3" padding="around-small">
                 <lightning:input value="{!v.searchKeyword}"
+                                 type="search"
                                  required="true"
                                  onkeyup="{!c.Search}"
                                  aura:id="searchField"
