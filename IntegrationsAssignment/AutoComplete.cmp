@@ -1,6 +1,6 @@
 <aura:component >
     <aura:attribute name="business" type="String" />
-    <aura:registerEvent name="selectedBusinessEvent" type="c:yelpSearchEvent" />
+    <aura:registerEvent name="selectedBusinessEvent" type="c:SearchEvent" />
     
     <li role="presentation" class="slds-listbox__item" onclick="{!c.selectBusiness}">
         <span id="listbox-option-unique-id-01" class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option-has-meta" role="option">
