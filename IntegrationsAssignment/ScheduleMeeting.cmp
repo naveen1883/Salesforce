@@ -33,7 +33,7 @@
         
         <div>
         	<aura:if isTrue="{!v.mapMarkers.length > 0}">
-                <lightning:map mapMarkers="{!v.mapMarkers}" center="{!v.center}" zoomLevel="15"
+                <lightning:map mapMarkers="{!v.mapMarkers}" center="{!v.center}" zoomLevel="10"
                                markersTitle="{!v.markersTitle}" footer="{!v.showFooter}" />
             </aura:if>
         </div>
