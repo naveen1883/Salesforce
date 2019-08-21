@@ -74,7 +74,7 @@
                         <div class="slds-truncate">Phone No</div>
                     </th>
                     <th scope="col">
-                    	   <div class="slds-truncate">Action</div>
+                    <div class="slds-truncate">Action</div>
                     </th>
                 </tr>
             </thead>
@@ -95,7 +95,7 @@
                           <div class="slds-truncate">
                               <lightning:button label="View" value="{!acc.Id}" onclick="{!c.handleClick}"/>
                           </div>    
-                      	</td>
+                        </td>
                     </tr>
                 </aura:iteration>
             </tbody>
