@@ -19,7 +19,7 @@
     getBusiness : function(component,searchKeyword){
         var encodedKeyword = searchKeyword.replace(/ /g,"%20");
         var currentContact = component.get("v.currentContact");
-        var location = currentContact.MailingAddress.city + "," currentContact.MailingAddress.state;
+        var location = currentContact.MailingAddress.city + "," + currentContact.MailingAddress.state;
         var encodedLocation = location.replace(/ /g,"%20");
         
         var action = component.get("c.getSearchCallout");
