@@ -32,7 +32,7 @@ public class MyController {
             ApexPages.addMessage(msg);
             return null;
         }
-        else{
+        else {
             ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, 
                                                           'Account name must contain two separate words.');
             ApexPages.addMessage(msg);
