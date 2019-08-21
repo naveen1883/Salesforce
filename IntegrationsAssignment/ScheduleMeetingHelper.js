@@ -1,5 +1,5 @@
 ({
-	searchHelper : function(component,searchKeyword) {
+    searchHelper : function(component,searchKeyword) {
         var encodedKeyword = searchKeyword.replace(/ /g,"%20");
         var action = component.get("c.getAutoCallout");
         action.setParams({
@@ -14,7 +14,7 @@
             }
         });
         $A.enqueueAction(action);
-	},
+    },
     
     getBusiness : function(component,searchKeyword){
         var encodedKeyword = searchKeyword.replace(/ /g,"%20");
