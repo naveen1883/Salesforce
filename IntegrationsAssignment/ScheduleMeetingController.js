@@ -1,10 +1,10 @@
 ({
 	doInit : function(component, event, helper) {
-		var action = component.get("c.getContact");
-        action.setParams({
+	    var action = component.get("c.getContact");
+            action.setParams({
             "contactId" : component.get("v.recordId")
-        });
-        action.setCallback(this,function(response){
+            });
+            action.setCallback(this,function(response){
             var state = response.getState();
             if(state === "SUCCESS"){
                 var currentContact = response.getReturnValue();
@@ -29,8 +29,8 @@
             } else {
                 console.log("ScheduleMeetingController.doInit() failed with state: " + state);
             }
-        });
-        $A.enqueueAction(action); 
+            });
+            $A.enqueueAction(action); 
 	},
     
     onblur : function(component, event, helper){
