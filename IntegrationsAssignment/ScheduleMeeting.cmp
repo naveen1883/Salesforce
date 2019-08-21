@@ -33,9 +33,12 @@
         
         <div>
         	<aura:if isTrue="{!v.mapMarkers.length > 0}">
-                <lightning:map mapMarkers="{!v.mapMarkers}" center="{!v.center}" zoomLevel="{!v.zoomLevel}"
+                <lightning:map mapMarkers="{!v.mapMarkers}" center="{!v.center}" zoomLevel="15"
                                markersTitle="{!v.markersTitle}" footer="{!v.showFooter}" />
             </aura:if>
+        </div>
+        <div>
+        	<lightning:input type="datetime" name="dateandtime" aura:id="pref_dateandtime" value="{!v.today}" />
         </div>
     </div>
 </aura:component>
