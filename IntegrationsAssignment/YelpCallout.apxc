@@ -1,0 +1,32 @@
+public class YelpCallout {
+    @AuraEnabled
+    public static List<Map<String,Object>> getSearchCallout(String url){
+        Yelp_Callout_Setting__mdt yelp = [select Endpoint__c, Access_Token__c from Yelp_Callout_Setting__mdt]; 
+        
+        Http h = new Http();
+        HttpRequest req = new HttpRequest();
+        req.setEndpoint(yelp.Endpoint__c);
+        req.setMethod('GET');
+        req.setHeader('Authorization', 'Bearer ' + yelp.Access_Token__c);
+        
+        HttpResponse res = h.send(req);
+        List<Map<String,Object>> results = new List<Map<String,Object>>();
+        
+        Map<String,Object> mappedResults = (Map<String,Object>)JSON.deserializeUntyped(res.getBody());
+        List<Object> businesses = (List<Object>)mappedResults.get('businesses');
+        for(Object business : businesses){
+            Map<String,Object> b = (Map<String,Object>)business;
+            
+            Map<String,Object> yelpResult = new Map<String,Object>();
+            yelpResult.put('name',b.get('name'));
+            yelpResult.put('phone',b.get('phone'));
+            yelpResult.put('location',b.get('location'));
+            yelpResult.put('rating',b.get('rating'));
+            results.add(yelpResult);   
+        }
+        
+       return results;     
+        
+    }
+
+}
