@@ -38,7 +38,7 @@
             </aura:if>
         </div>
         <div>
-        	<lightning:input type="datetime" name="dateandtime" aura:id="pref_dateandtime" value="{!v.today}" />
+        	<lightning:input type="datetime" aura:id="dateTime" value="{!v.today}" />
         </div>
     </div>
 </aura:component>
