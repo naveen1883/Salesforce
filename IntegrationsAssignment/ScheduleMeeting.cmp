@@ -26,7 +26,7 @@
             
             <ul style="min-height:40px;margin-top:0px !important" class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid slds-lookup__menu slds" role="listbox">
                 <aura:iteration items="{!v.listOfAutoComplete}" var="singleBusiness">
-                    <c:yelpAutoComplete business="{!singleBusiness}"/>
+                    <c:AutoComplete business="{!singleBusiness}"/>
                 </aura:iteration>
             </ul>
         </div>
