@@ -1,4 +1,4 @@
-<aura:component implements="force:appHostable" access="global" controller="searchAccountController" >
+<aura:component controller="searchAccountController" implements="force:appHostable" access="global" >
      <!--Start Modal New Account -->
     <aura:attribute name="accObj" type="Account" default="{'sobjectType': 'Account',
                          'Name': '',
