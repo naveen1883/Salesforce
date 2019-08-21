@@ -1,4 +1,4 @@
-<aura:component controller="YelpCallout">
+<aura:component controller="YelpCallout" implements="force:lightningQuickAction">
     
     <aura:attribute name="recordId" type="Id" />
     <aura:attribute name="currentContact" type="Contact" />
@@ -13,7 +13,7 @@
     <aura:attribute name="showFooter" type="Boolean" />
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    <aura:handler name="selectedBusinessEvent" event="c.yelpSearchEvent" action="{!c.handleSearchEvent}" />
+    <aura:handler name="selectedBusinessEvent" event="c.SearchEvent" action="{!c.handleSearchEvent}" />
     
     <div onmouseleave="{!c.onblur}" aura:id="searchResult" class="slds-form-element slds-lookup slds-is-close" data-select="single">
     	<div class="slds-form-element__control">
