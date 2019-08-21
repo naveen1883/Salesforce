@@ -2,32 +2,37 @@ public class YelpCallout {
     
     @AuraEnabled
     public static Contact getContact(ID recordId){
-     	return ([SELECT MailingStreet, MailingCity, MailingState, MailingCountry, MailingPostalCode FROM Contact WHERE Id = :recordId]);
-        //String conLocation = con.MailingStreet + ',' + con.MailingCity + ',' + con.MailingState + ',' + con.MailingCountry;
-    	//return con;
+     	return ([SELECT MailingAddress FROM Contact WHERE Id = :recordId]);
     }
-    	
+    
+    public class AutoComplete {
+        public List<Map<String,String>> terms;
+        public List<Map<String,String>> businesses;
+        public List<Map<String,String>> categories;
+    }
+    
     @AuraEnabled
-    public static List<Map<String,Object>> getAutoCallout(String url){
+    public static List<String> getAutoCallout(String url){
         Yelp_Callout_Setting__mdt yelp = [select Endpoint__c, Access_Token__c from Yelp_Callout_Setting__mdt]; 
         
         Http h = new Http();
         HttpRequest req = new HttpRequest();
-        req.setEndpoint(yelp.Endpoint__c);
+        req.setEndpoint(yelp.Endpoint__c + url);
         req.setMethod('GET');
         req.setHeader('Authorization', 'Bearer ' + yelp.Access_Token__c);
         
         HttpResponse res = h.send(req);
-        List<Map<String,Object>> results = new List<Map<String,Object>>();
+        AutoComplete ac = (AutoComplete)JSON.deserialize(res.getBody(),AutoComplete.Class);
         
-        Map<String,Object> autoResults = (Map<String,Object>)JSON.deserializeUntyped(res.getBody());
-        List<Object> terms = (List<Object>)autoResults.get('terms');
-        for(Object term : terms){
-            Map<String,Object> t = (Map<String,Object>)term;
-            
-            Map<String,Object> yelpResult = new Map<String,Object>();
-            yelpResult.put('term',t.get('term'));
-            results.add(yelpResult);   
+        List<String> results = new List<String>();
+        for(Map<String,String> term : ac.terms) {
+            results.add(term.get('text'));
+        }
+        for(Map<String,String> business : ac.businesses) {
+            results.add(business.get('name'));
+        }
+        for(Map<String,String> category : ac.categories) {
+            results.add(category.get('alias'));
         }
         
        return results;     
@@ -40,7 +45,7 @@ public class YelpCallout {
         
         Http h = new Http();
         HttpRequest req = new HttpRequest();
-        req.setEndpoint(yelp.Endpoint__c);
+        req.setEndpoint(yelp.Endpoint__c + url);
         req.setMethod('GET');
         req.setHeader('Authorization', 'Bearer ' + yelp.Access_Token__c);
         
