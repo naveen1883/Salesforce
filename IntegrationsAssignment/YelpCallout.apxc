@@ -1,8 +1,8 @@
 public class YelpCallout {
     
     @AuraEnabled
-    public static Contact getContact(ID recordId){
-     	return ([SELECT MailingAddress FROM Contact WHERE Id = :recordId]);
+    public static Contact getContact(ID contactId){
+     	return ([SELECT MailingAddress FROM Contact WHERE Id = :contactId]);
     }
     
     public class AutoComplete {
