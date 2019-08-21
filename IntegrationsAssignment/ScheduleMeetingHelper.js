@@ -3,8 +3,8 @@
         var encodedKeyword = searchKeyword.replace(/ /g,"%20");
         var action = component.get("c.getAutoCallout");
         action.setParams({
-            'url' : '/autocomplete?text=' + encodedKeyword + "&latitude=35.7689&longitude=118.5473" 
-        });
+            'url' : '/autocomplete?text=' + encodedKeyword + "&latitude=40.820262&longitude=-73.1995974" 
+        }); //449 Lincoln Blvd, Hauppauge, NY 11788 - Decimal GPS coordinates
         action.setCallback(this,function(response){
             var state = response.getState();
             if(state === "SUCCESS"){
@@ -21,7 +21,7 @@
         var currentContact = component.get("v.currentContact");
         var location = currentContact.MailingAddress.city + "," + currentContact.MailingAddress.state;
         var encodedLocation = location.replace(/ /g,"%20");
-        
+        //console.log(encodedLocation);
         var action = component.get("c.getSearchCallout");
         action.setParams({
             'url' : '/businesses/search?term=' + encodedKeyword + '&location=' + encodedLocation
@@ -47,7 +47,7 @@
                         + ' and can be contacted at: ' + searchResults[x].phone + '.'
                     });
                     
-                    if(x==4) break;
+                    if(x==4) break; //display top 5 results
                 }
                 component.set("v.mapMarkers",mapMarkers);
                 component.set("v.center",mapMarkers[0]);
