@@ -74,8 +74,8 @@
                         <div class="slds-truncate">Phone No</div>
                     </th>
                     <th scope="col">
-                    	<div class="slds-truncate">Action</div>
-                  	</th>
+                    	   <div class="slds-truncate">Action</div>
+                    </th>
                 </tr>
             </thead>
             <tbody> 
