@@ -1,6 +1,6 @@
 public class InsertAccount {
 
-    private Account acc{get;set;}
+    private Account acc {get;set;}
     private Contact con;
     private String[] str;
 
