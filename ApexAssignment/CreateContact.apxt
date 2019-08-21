@@ -18,8 +18,7 @@ trigger CreateContact on Account (after insert, after update) {
             else
                 acc.Name.addError('Account name must contain two separate words.');
         }
-    if(ContactList.size() > 0) 
-        insert ContactList; //Bulkify Trigger
+        if(ContactList.size() > 0) insert ContactList; //Bulkify Trigger
     }    
     if(Trigger.isUpdate) { //update use case handler
         for(Account acc : Trigger.New) {
@@ -37,7 +36,6 @@ trigger CreateContact on Account (after insert, after update) {
             else
                 acc.Name.addError('Account name must contain two separate words.');
         }
-    if(ContactList.size() > 0) 
-        update ContactList; //Bulkify Trigger
+        if(ContactList.size() > 0) update ContactList; //Bulkify Trigger
     }
 }
