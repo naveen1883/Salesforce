@@ -21,7 +21,6 @@
         var currentContact = component.get("v.currentContact");
         var location = currentContact.MailingAddress.city + "," + currentContact.MailingAddress.state;
         var encodedLocation = location.replace(/ /g,"%20");
-        //console.log(encodedLocation);
         var action = component.get("c.getSearchCallout");
         action.setParams({
             'url' : '/businesses/search?term=' + encodedKeyword + '&location=' + encodedLocation
