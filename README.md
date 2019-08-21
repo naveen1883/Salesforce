@@ -1,2 +1,2 @@
 # Salesforce Developer Training
-Quintrix
+Quintrix Solutions, Inc.
