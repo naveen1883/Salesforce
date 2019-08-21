@@ -32,7 +32,7 @@
     
     onblur : function(component, event, helper){
         var close = component.find("searchResult");
-        $A.util.addClose(close,"slds-is-close");
+        $A.util.addClass(close,"slds-is-close");
         $A.util.removeClass(close,"slds-is-open");
     },
     
@@ -40,7 +40,7 @@
         var searchKeyword = component.get("v.searchKeyword");
         if(searchKeyword.length!=0){
             var open = component.find("searchResult");
-            $A.util.addClose(open,"slds-is-open");
+            $A.util.addClass(open,"slds-is-open");
         	$A.util.removeClass(open,"slds-is-close");
             helper.searchHelper(component,searchKeyword);
         }
