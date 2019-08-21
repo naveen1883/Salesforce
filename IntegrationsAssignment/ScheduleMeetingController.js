@@ -24,7 +24,7 @@
                 component.set("v.markersTitle","Businesses");
                 component.set("v.showFooter",true);  
             } else {
-                console.log("yelpSearchController.doInit() failed with state: " + state);
+                console.log("ScheduleMeetingController.doInit() failed with state: " + state);
             }
         });
         $A.enqueueAction(action); 
