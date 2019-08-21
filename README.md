@@ -1,2 +1,2 @@
-# Salesforce
-Quintrix Training
+# Salesforce Developer Training
+Quintrix
