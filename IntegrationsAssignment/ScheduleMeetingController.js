@@ -18,7 +18,10 @@
                         Country : currentContact.MailingAddress.country
                     },
                     
-                    title : "Your Location"
+                    title : currentContact.Name,
+                    description : currentContact.MailingAddress.street + ', ' + currentContact.MailingAddress.city
+                    + ', ' + currentContact.MailingAddress.state + ' ' + currentContact.MailingAddress.postalCode
+                        
                 }]);
                 component.set("v.center", component.get("v.mapMarkers")[0]);
                 component.set("v.markersTitle","Businesses");
@@ -71,8 +74,8 @@
         }
     },
     
-    keySearch : function(component, event, helper){
-        if(event.which == 13){
+    keyCheck : function(component, event, helper){
+        if(event.which == 13){ //check for Enter key
             var searchKeyword = component.get("v.searchKeyword");
             helper.getBusiness(component,searchKeyword);
             
