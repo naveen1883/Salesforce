@@ -8,7 +8,7 @@
 		    </apex:pageBlockSection>       
         <apex:pageBlockButtons >
             <apex:commandButton action="{! save }" value="Save" /> 
-            <apex:commandButton action="{! cancel }" value="Cancel" /> 
+            <apex:commandButton action="{! cancel }" value="Cancel" immediate="true" /> 
         </apex:pageBlockButtons>
      </apex:pageBlock>
     </apex:form>
