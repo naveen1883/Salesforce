@@ -19,7 +19,7 @@
     	<div class="slds-form-element__control">
             <div aura:id="lookupField" class="slds-show slds-m-bottom_x-small" style="width:29em;">
                 <span onkeydown="{!c.keyCheck}">
-                    <lightning:input aura:id="searchform" onfocus="{!c.onfocus}" placeholder="Enter Yelp search query"
+                    <lightning:input label="Search Businesses" aura:id="searchform" onfocus="{!c.onfocus}" placeholder="Enter Yelp search query"
                                      value="{!v.searchKeyword}" type="search" onchange="{!c.keyPressController}" />
                 </span>
             </div>
@@ -32,13 +32,16 @@
         </div>
         
         <div>
-            <aura:if isTrue="{!v.mapMarkers.length > 0}">
+        	<aura:if isTrue="{!v.mapMarkers.length > 0}">
                 <lightning:map mapMarkers="{!v.mapMarkers}" center="{!v.center}" zoomLevel="10"
                                markersTitle="{!v.markersTitle}" footer="{!v.showFooter}" />
             </aura:if>
         </div>
         <div>
         	<lightning:input type="datetime" aura:id="dateTime" value="{!v.today}" />
+        </div>
+        <div>
+            <lightning:input type="Text" aura:id="meetingLoc" label="Meeting Location" placeholder="Enter Meeting Place" />           							
         </div>
     </div>
 </aura:component>
