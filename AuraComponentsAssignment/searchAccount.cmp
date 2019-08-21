@@ -1,4 +1,4 @@
-<aura:component controller="searchAccountController">   
+<aura:component controller="searchAccountController" implements="force:appHostable" access="global">   
        
     <!-- CREATE ATTRIBUTE/VARIABLE-->
     <aura:attribute name="searchResult" type="Account[]" />
