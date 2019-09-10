@@ -5,7 +5,7 @@ private class WarehouseCalloutServiceTest {
         Test.startTest();
         Test.SetMock(HttpCallOutMock.class, new WarehouseCalloutServiceMock());
         WarehouseCalloutService.runWarehouseEquipmentSync();
-		Test.stopTest();
+	Test.stopTest();
 		
         List<Product2> productsToUpsert = [SELECT Replacement_Part__c, Cost__c, Current_Inventory__c, Lifespan_Months__c,
                                            Maintenance_Cycle__c, Name FROM Product2];
