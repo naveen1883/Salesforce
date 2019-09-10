@@ -1,0 +1,33 @@
+public class MaintenanceRequestHelper {
+    
+    public static void updateWorkOrders(){
+        // update workorders
+        // determine single/bulk case
+        List<Case> maintenanceRequestList = [select Id, Case.Vehicle__c, Equipment__c, Equipment__r.Maintenance_Cycle__c, Type, Status from Case where Id in :Trigger.New limit 200];
+        if(maintenanceRequestList != Null && maintenanceRequestList.size()>0){
+            List<Case> insertMaintenanceRequest = getCaseList(maintenanceRequestList);
+            insert insertMaintenanceRequest;
+        }
+    }
+    
+    public static List<Case> getCaseList(List<Case> maintenanceRequestList){
+        
+        List<Case> newMaintenanceRequestList = new List<Case>();
+        for(Case cas:maintenanceRequestList){
+            if((cas.Type == 'Repair' || cas.Type == 'Routine Maintenance') && cas.Status == 'Closed'){
+                Case newMaintenanceRequest = new Case();
+                newMaintenanceRequest.Subject = 'Test';
+                newMaintenanceRequest.Type = 'Routine Maintenance';
+                newMaintenanceRequest.Vehicle__c = cas.Vehicle__c;
+                newMaintenanceRequest.Equipment__c = cas.Equipment__c;
+                newMaintenanceRequest.Date_Reported__c = date.Today();
+                newMaintenanceRequest.Date_Due__c = Date.today().addDays(Integer.valueOf(cas.Equipment__r.Maintenance_Cycle__c));
+                newMaintenanceRequest.Status = 'New';
+                newMaintenanceRequest.Origin = 'Phone';
+                newMaintenanceRequestList.add(newMaintenanceRequest);
+            }
+        }
+        return newMaintenanceRequestList;
+    }
+    
+}
