@@ -1,5 +1,5 @@
 public with sharing class WarehouseCalloutService {
-
+    //enable remote site access in Setup
     private static final String WAREHOUSE_URL = 'https://th-superbadge-apex.herokuapp.com/equipment';
 
     @future(callout=true)
