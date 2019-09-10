@@ -28,5 +28,4 @@ public class MaintenanceRequestHelper {
         }
         return newMaintenanceRequestList;
     }
-    
 }
