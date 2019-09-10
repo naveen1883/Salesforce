@@ -11,7 +11,6 @@ public class MaintenanceRequestHelper {
     }
     
     public static List<Case> getCaseList(List<Case> maintenanceRequestList){
-        
         List<Case> newMaintenanceRequestList = new List<Case>();
         for(Case cas:maintenanceRequestList){
             if((cas.Type == 'Repair' || cas.Type == 'Routine Maintenance') && cas.Status == 'Closed'){
