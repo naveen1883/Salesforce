@@ -1,0 +1,35 @@
+@isTest
+public class MaintenanceRequestTest {
+    
+    @isTest  
+    static void testMaintenanceRequest(){
+        
+        List<Case> maintenanceList = new List<Case>();
+        List<Case> maintenanceListAfterClosed = new List<Case>();
+        Vehicle__c vehicle = new Vehicle__c(Name = 'Test Vehicle', Air_Conditioner__c = true, Model__c = '123Test');
+        insert vehicle;
+        Product2 equipment = new Product2(Name = 'Tire', Cost__c = 100, Current_Inventory__c = 10, Replacement_Part__c = true,
+                                        Warehouse_SKU__c = 'Test', Lifespan_Months__c = 10, Maintenance_Cycle__c = 10);
+        insert equipment;
+        for(Integer i=1; i<=300; i++){
+            Case maintenance = new Case(Subject = 'Test', Type = 'Repair', Status = 'New',
+                                      Origin = 'Phone', Equipment__c = equipment.Id, Vehicle__c = vehicle.Id);
+            maintenanceList.add(maintenance);
+        }
+        //System.assertEquals(300, maintenanceList.size());
+        insert maintenanceList;
+        
+        for(Case caseUpdate:maintenanceList){
+            caseUpdate.Status = 'Closed';
+            caseUpdate.Type = 'Routine Maintenance';
+            caseUpdate.Date_Due__c = date.Today().addDays(Integer.valueOf(equipment.Maintenance_Cycle__c));
+            maintenanceListAfterClosed.add(caseUpdate);
+        }
+        Test.startTest();
+        //Bulk update
+        Database.SaveResult[] updatEquipment = Database.update(maintenanceListAfterClosed);
+        Test.stopTest();
+        for(Database.SaveResult sa:updatEquipment)
+            System.assert(sa.isSuccess());
+    }   
+}
