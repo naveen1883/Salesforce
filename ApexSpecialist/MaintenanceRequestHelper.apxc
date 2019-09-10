@@ -2,7 +2,6 @@ public class MaintenanceRequestHelper {
     
     public static void updateWorkOrders(){
         // update workorders
-        // determine single/bulk case
         List<Case> maintenanceRequestList = [select Id, Case.Vehicle__c, Equipment__c, Equipment__r.Maintenance_Cycle__c, Type, Status from Case where Id in :Trigger.New limit 200];
         if(maintenanceRequestList != Null && maintenanceRequestList.size()>0){
             List<Case> insertMaintenanceRequest = getCaseList(maintenanceRequestList);
