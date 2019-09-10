@@ -3,7 +3,6 @@ public class MaintenanceRequestTest {
     
     @isTest  
     static void testMaintenanceRequest(){
-        
         List<Case> maintenanceList = new List<Case>();
         List<Case> maintenanceListAfterClosed = new List<Case>();
         Vehicle__c vehicle = new Vehicle__c(Name = 'Test Vehicle', Air_Conditioner__c = true, Model__c = '123Test');
