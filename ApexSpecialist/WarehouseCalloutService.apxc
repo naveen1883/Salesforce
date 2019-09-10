@@ -4,7 +4,6 @@ public with sharing class WarehouseCalloutService {
 
     @future(callout=true)
     public static void runWarehouseEquipmentSync() {
-        
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         HTTPResponse response = new HTTPResponse();
