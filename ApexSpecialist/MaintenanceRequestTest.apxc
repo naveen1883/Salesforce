@@ -11,8 +11,8 @@ public class MaintenanceRequestTest {
                                         Warehouse_SKU__c = 'Test', Lifespan_Months__c = 10, Maintenance_Cycle__c = 10);
         insert equipment;
         for(Integer i=1; i<=300; i++){
-            Case maintenance = new Case(Subject = 'Test', Type = 'Repair', Status = 'New',
-                                      Origin = 'Phone', Equipment__c = equipment.Id, Vehicle__c = vehicle.Id);
+            Case maintenance = new Case(Subject = 'Test ' + i, Type = 'Repair ' + i, Status = 'New ' + i,
+                                      Origin = 'Phone ' + i, Equipment__c = equipment.Id, Vehicle__c = vehicle.Id);
             maintenanceList.add(maintenance);
         }
         //System.assertEquals(300, maintenanceList.size());
