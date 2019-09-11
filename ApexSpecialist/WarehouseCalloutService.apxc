@@ -10,7 +10,7 @@ public with sharing class WarehouseCalloutService {
         
         request.setEndpoint(WAREHOUSE_URL);
         request.setMethod('GET');
-        request.setHeader('Content-Type','text-xml');
+        request.setHeader('Content-Type','text-xml'); //optional
         response = http.send(request);
         
         List<WarehouseEquipment> warehouseEquipmentList = new WarehouseEquipment().parse(response.getBody());
