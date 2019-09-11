@@ -26,9 +26,9 @@ public class MaintenanceRequestTest {
         }
         Test.startTest();
         //Bulk update
-        Database.SaveResult[] updatEquipment = Database.update(maintenanceListAfterClosed);
+        Database.SaveResult[] updateEquipment = Database.update(maintenanceListAfterClosed);
         Test.stopTest();
-        for(Database.SaveResult sa:updatEquipment)
+        for(Database.SaveResult sa:updateEquipment)
             System.assert(sa.isSuccess());
     }   
 }
