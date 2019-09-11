@@ -3,9 +3,9 @@ public class WarehouseSyncScheduleTest {
    
     @isTest 
     static void WarehousescheduleTest(){
+        Test.SetMock(HttpCallOutMock.class, new WarehouseCalloutServiceMock());
         String scheduleTime = '0 0 1 * * ?'; //at 1 AM daily
         Test.startTest();
-        Test.SetMock(HttpCallOutMock.class, new WarehouseCalloutServiceMock());
         //WarehouseSyncSchedule will call WarehouseCalloutService.runWarehouseEquipmentSync();
         String jobID = System.schedule('WarehouseSyncScheduleTest', scheduleTime, new WarehouseSyncSchedule());
         Test.stopTest();
