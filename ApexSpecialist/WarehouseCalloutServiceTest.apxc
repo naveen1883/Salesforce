@@ -1,7 +1,8 @@
 @isTest
 private class WarehouseCalloutServiceTest {
     
-    @isTest static  void warehouseServiceTest() {
+    @isTest 
+    static void warehouseServiceTest() {
         Test.startTest();
         Test.SetMock(HttpCallOutMock.class, new WarehouseCalloutServiceMock());
         WarehouseCalloutService.runWarehouseEquipmentSync();
