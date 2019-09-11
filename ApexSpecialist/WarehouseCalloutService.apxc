@@ -18,7 +18,7 @@ public with sharing class WarehouseCalloutService {
         
         // Update Salesforce Records
         for (WarehouseEquipment whrEquip : warehouseEquipmentList) {
-            Product2 newProduct = new Product2(Warehouse_SKU__c  = whrEquip.id);
+            Product2 newProduct = new Product2(Warehouse_SKU__c = whrEquip.id);
             newProduct.Replacement_Part__c = true;
             newProduct.Cost__c = whrEquip.cost;
             newProduct.Current_Inventory__c = whrEquip.quantity;
