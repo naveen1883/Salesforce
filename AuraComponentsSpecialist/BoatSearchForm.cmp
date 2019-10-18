@@ -1,29 +1,36 @@
 <aura:component controller="BoatController">
+    
     <aura:attribute name="boatRecords" type="List" />
     <aura:attribute name="newButtonDisabled" type="Boolean" default="false" />
     <aura:attribute name="boatTypeId" type="String" />
     
+    <aura:registerEvent name="formsubmit" type="c:formsubmit"/>
+    
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
-    <lightning:layout horizontalAlign="center" verticalAlign="end">
+    <lightning:layout verticalAlign="end" horizontalAlign="center">
+        
         <lightning:layoutItem padding="around-small">
+            
             <lightning:select aura:id="levels" onchange="{!c.handleChange}">
                 <option value="" text="All Types" selected="true"></option>
                 <aura:iteration items="{!v.boatRecords}" var="item">
-                    <option value="{!item.Id}" text="{!item.name}"></option>
+                    <option value="{!item.Id}" text="{!item.Name}"></option>
                 </aura:iteration>
             </lightning:select>
+            
         </lightning:layoutItem>
         
         <lightning:layoutItem padding="around-small">
-            <lightning:button variant="brand" label="Search" onclick="{!c.onFormSubmit}" />
+            <lightning:button variant="brand" label="Search" onclick="{! c.onFormSubmit }" />
         </lightning:layoutItem>
         
         <lightning:layoutItem padding="around-small">
-            <aura:if isTrue="{!v.newButtonDisabled}">
-            	<lightning:button variant="neutral" label="New" onclick="{!c.newBoat}" />
+            <aura:if isTrue='{!v.newButtonDisabled}'>
+                <lightning:button variant="neutral" label="New" name="New" onclick="{! c.newBoat }" />
             </aura:if>
         </lightning:layoutItem>
-    </lightning:layout>
         
+    </lightning:layout>
+    
 </aura:component>
