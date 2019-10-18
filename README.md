@@ -1,2 +1,2 @@
-# Salesforce Developer Training
-Quintrix Solutions, Inc.
+# Trailhead Superbadges' Solutions
+https://trailblazer.me/id/naveen1883
