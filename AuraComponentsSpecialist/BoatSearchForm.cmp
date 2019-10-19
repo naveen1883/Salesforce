@@ -4,7 +4,7 @@
     <aura:attribute name="newButtonDisabled" type="Boolean" default="false" />
     <aura:attribute name="boatTypeId" type="String" />
     
-    <aura:registerEvent name="formsubmit" type="c:formsubmit"/>
+    <aura:registerEvent name="FormSubmit" type="c:FormSubmit"/>
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
