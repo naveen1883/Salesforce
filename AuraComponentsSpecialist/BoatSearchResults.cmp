@@ -1,0 +1,32 @@
+<aura:component controller="BoatSearchResults">
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />    
+    <aura:attribute name="boats" type="List" />
+
+    <aura:attribute name="boatTypeId" type="String" />
+
+    <aura:attribute name="selectedBoatId" type="String" />
+    <aura:handler name="BoatSelect" event="c:BoatSelect" action="{!c.onBoatSelect }"/>
+
+    <aura:method name="search" action="{!c.doSearch}"
+                 description="Calling this method for step 4 of the challenge.">
+        <aura:attribute name="boatTypeId" type="String" />
+    </aura:method>
+    
+    <aura:if isTrue='{!v.boats.length > 0}'>
+        
+        <lightning:layout multipleRows="true" verticalAlign="center">        
+            <aura:iteration items="{!v.boats}" var="boat">
+                <lightning:layoutitem flexibility="auto" class="slds-m-right_small">                     
+                    <c:BoatTile boat="{!boat}" selected="{!boat.Id == v.selectedBoatId ? true : false}"/>
+                </lightning:layoutitem>
+            </aura:iteration>
+        </lightning:layout>
+        
+        <aura:set attribute="else">
+            <div class="slds-align_absolute-center" style="height: 5rem;">No boats found</div>
+        </aura:set>
+        
+    </aura:if>
+    
+</aura:component>
