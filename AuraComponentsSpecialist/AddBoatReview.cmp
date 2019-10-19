@@ -1,0 +1,64 @@
+<aura:component >
+    
+    <!-- This value is passed by the boat details component -->
+    <aura:attribute name="boat" type="Boat__c" />
+    
+    <!-- This value is the boat review, object that will be used to save the reviews -->
+    <aura:attribute name="boatReview" type="BoatReview__c" />
+    
+    <!-- New value instatiated -->
+    <aura:attribute name="newBoatReview" type="BoatReview__c" />
+    
+    <!-- defining a private attribute for errors -->
+    <aura:attribute name="recordError" type="String" access="private" />
+    
+    <!-- initializing component -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <!-- fields used on the force record data -->
+    <aura:attribute name="fieldsToQuery" type="String[]" default="Id, Name, Comment__c, Boat__c"/>   
+    
+    <aura:registerEvent name="boatreviewadded" type="c:BoatReviewAdded"/>
+    
+    <force:recordData aura:id="service"
+                      fields="{!v.fieldsToQuery}"
+                      targetFields="{!v.boatReview}"
+                      targetError="{!v.recordError}"
+                      recordUpdated="{!c.onRecordUpdated }"
+                      />
+    
+    <!-- arrange the form fields vertically (form stacked) -->
+    <lightning:layout >
+        
+        <lightning:layoutItem padding="around-small" size="12">
+            
+            <!-- ADD REVIEW (GOT THIS FROM THE EXPENSE FORM COMPONENT) -->
+            <form class="slds-form--stacked"> 
+                
+                <!-- Title -->
+                <lightning:input aura:id="addreviewform" label="Title"
+                                 name="title"
+                                 value="{!v.boatReview.Name}"/> 
+                
+                <!-- Description -->
+                <lightning:inputRichText aura:id="description" title="description"
+                                         disabledCategories="FORMAT_FONT"
+                                         value="{!v.boatReview.Comment__c}"
+                                         placeholder="Comment"/>
+                
+                <!-- Rating -->
+                <c:FiveStarRating value="{!v.boatReview.Rating__c}" readonly="false"/>
+                
+                <!-- submit button -->
+                <lightning:button label="Submit" 
+                                  iconName="utility:save"
+                                  class="slds-m-top--medium"
+                                  variant="neutral"
+                                  onclick="{!c.onSave}"/>
+            </form>
+            
+        </lightning:layoutItem>
+        
+    </lightning:layout>
+    
+</aura:component>
