@@ -1,5 +1,5 @@
 public class BoatSearchResults { 
-	@AuraEnabled
+    @AuraEnabled
     public static List<Boat__c> getBoats(String boatTypeId) {
         List<Boat__c> boats = new List<Boat__c>();
         if (String.isEmpty(boatTypeId)) {
