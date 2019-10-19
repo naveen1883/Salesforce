@@ -1,6 +1,6 @@
 <aura:component implements="flexipage:availableForAllPageTypes">
     
-    <aura:handler name="FormSubmit" event="c:FormSubmit" action="{!c.onFormSubmit}"/>
+    <aura:handler name="formsubmit" event="c:FormSubmit" action="{!c.onFormSubmit}"/>
     
     <lightning:card title="Find a boat" >
         <c:BoatSearchForm />
