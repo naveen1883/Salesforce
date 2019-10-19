@@ -1,0 +1,43 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    
+    <aura:attribute name="boat" type="Boat__c" />
+    <aura:attribute name="Id" type="Id" />
+    
+    <!-- fields used on the force record data -->
+    <aura:attribute name="fieldsToQuery" type="String[]" default="Id, Name, Description__c, Price__c,
+                                                                  Length__c, Contact__r.Name, Contact__r.Email,
+                                                                  Contact__r.HomePhone, BoatType__r.Name, 
+                                                                  Picture__c "/>
+    
+    <!-- APPLICATION EVENT fired by the boat tile, that's how this outside component knows which details record to show -->
+    <aura:handler event="c:BoatSelected" action="{!c.onBoatSelected }"/> 
+    <aura:handler event="c:BoatReviewAdded" action="{!c.onBoatReviewAdded}" name="boatreviewadded"/> 
+    
+    <force:recordData aura:id="service"
+                      recordId="{!v.Id}"
+                      fields="{!v.fieldsToQuery}"
+                      targetFields="{!v.boat}"
+                      recordUpdated="{!c.onRecordUpdated }"
+                      />
+    
+    <lightning:card title="">
+        
+        <aura:if isTrue='{!v.boat != undefined}'>
+            
+            <lightning:tabset aura:id="tabs">
+                <lightning:tab label="Details">
+                    <c:BoatDetail boat="{!v.boat}"/>
+                </lightning:tab>
+                <lightning:tab label="Reviews" id="boatreviewtab">
+                    <c:BoatReviews boat="{!v.boat}" aura:id='reviewcomponent'/>
+                </lightning:tab>
+                <lightning:tab label="Add Review">
+                    <c:AddBoatReview boat="{!v.boat}"/>
+                </lightning:tab>
+            </lightning:tabset>
+            
+        </aura:if>
+        
+    </lightning:card>
+    
+</aura:component>
