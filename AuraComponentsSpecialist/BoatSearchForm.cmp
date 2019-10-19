@@ -12,7 +12,7 @@
         
         <lightning:layoutItem padding="around-small">
             
-            <lightning:select aura:id="levels" onchange="{!c.handleChange}">
+            <lightning:select aura:id="levels" label="" onchange="{!c.handleChange}">
                 <option value="" text="All Types" selected="true"></option>
                 <aura:iteration items="{!v.boatRecords}" var="item">
                     <option value="{!item.Id}" text="{!item.Name}"></option>
