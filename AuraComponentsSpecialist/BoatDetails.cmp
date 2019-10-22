@@ -17,7 +17,7 @@
                       recordId="{!v.Id}"
                       fields="{!v.fieldsToQuery}"
                       targetFields="{!v.boat}"
-                      recordUpdated="{!c.onRecordUpdated }"
+                      recordUpdated="{!c.onRecordUpdated}"
                       />
     
     <lightning:card title="">
