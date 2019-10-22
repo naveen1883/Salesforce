@@ -4,7 +4,7 @@ public class BoatSearchResults {
         List<Boat__c> boats = new List<Boat__c>();
         if (String.isEmpty(boatTypeId)) {
             boats = [select Id,Name,Picture__c,Contact__r.name from Boat__c];
-        } else{
+        } else {
             boats = [select Id,Name,Picture__c,Contact__r.name from Boat__c where BoatType__c = :boatTypeId];
         }
         
