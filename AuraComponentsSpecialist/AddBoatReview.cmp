@@ -32,7 +32,7 @@
         
         <lightning:layoutItem padding="around-small" size="12">
             
-            <!-- ADD REVIEW (GOT THIS FROM THE EXPENSE FORM COMPONENT) -->
+            <!-- ADD REVIEW -->
             <form class="slds-form--stacked"> 
                 
                 <!-- Title -->
