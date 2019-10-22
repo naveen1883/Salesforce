@@ -6,7 +6,7 @@
     <!-- This value is the boat review, object that will be used to save the reviews -->
     <aura:attribute name="boatReview" type="BoatReview__c" />
     
-    <!-- New value instatiated -->
+    <!-- New value instantiated -->
     <aura:attribute name="newBoatReview" type="BoatReview__c" />
     
     <!-- defining a private attribute for errors -->
